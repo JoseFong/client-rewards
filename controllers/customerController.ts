@@ -8,3 +8,12 @@ export async function CustomerExistsPhone(phone:string){
     })
     return customer
 }
+
+export async function getCustomerFromId(id:number){
+    const customer = await prisma.customer.findFirst({
+        where: {
+            id: id
+        }
+    })
+    return customer
+}

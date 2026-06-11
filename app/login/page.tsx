@@ -2,7 +2,7 @@
 
 import axios from "axios"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 
 function LoginPage() {
@@ -35,6 +35,18 @@ function LoginPage() {
       }
     }
   }
+
+  useEffect(()=>{
+    function handleEnter(e:KeyboardEvent){
+      if(clicked && e.key==="Enter") go()
+    }
+
+    document.addEventListener("keydown",handleEnter)
+
+    return () => {
+      document.removeEventListener("keydown",handleEnter)
+    } 
+  },[clicked,phone])
 
   return (
     <div className="w-full h-screen min-h-screen gap-6 flex flex-col p-10 items-center justify-center" style={{backgroundColor:"#f2e9dc"}}>
